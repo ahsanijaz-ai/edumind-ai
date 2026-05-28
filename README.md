@@ -1,7 +1,5 @@
 <div align="center">
-  <img src="frontend/public/logo.png" alt="EduMind Logo" width="300"/>
-
-  # EduMind AI
+  <h1>🧠 EduMind AI</h1>
   **The Intelligent AI-Powered Learning Platform**
 
   An adaptive, highly personalized AI tutoring system built with Next.js, FastAPI, and LangGraph.
