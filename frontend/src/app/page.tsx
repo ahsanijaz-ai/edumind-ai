@@ -153,66 +153,69 @@ export default function Home() {
         <div className="absolute top-[20%] left-[5%] w-72 h-72 rounded-full blur-[100px]" style={{ background: "rgba(59,130,246,0.1)" }}></div>
         <div className="absolute bottom-[20%] right-[5%] w-72 h-72 rounded-full blur-[100px]" style={{ background: "rgba(37,99,235,0.1)" }}></div>
 
-        {/* Floating UI badges - only show on xl+ screens to avoid overlap */}
-        <div className="hidden xl:block absolute top-[28%] left-[2%] badge-enter" style={{ animationDelay: "0.6s", opacity: 0 }}>
-          <div className="glass-card rounded-2xl p-4 shadow-2xl max-w-[190px] animate-float">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full dot-1"></div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">AI Tutor</span>
+        {/* 3-column layout: badges | hero text | badge */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[220px_1fr_220px] items-center gap-8 px-4">
+
+          {/* Left badges column */}
+          <div className="hidden lg:flex flex-col gap-5 items-start">
+            <div className="glass-card rounded-2xl p-4 shadow-xl w-full badge-enter animate-float" style={{ animationDelay: "0.6s", opacity: 0 }}>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full dot-1"></div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">AI Tutor</span>
+              </div>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed text-left">&ldquo;Mitosis produces two genetically identical daughter cells via 4 phases...&rdquo;</p>
             </div>
-            <p className="text-xs text-slate-700 font-medium leading-relaxed">&ldquo;Mitosis produces two genetically identical daughter cells via 4 phases...&rdquo;</p>
-          </div>
-        </div>
-
-        <div className="hidden xl:block absolute top-[30%] right-[2%] badge-enter" style={{ animationDelay: "0.9s", opacity: 0 }}>
-          <div className="glass-card rounded-2xl p-4 shadow-2xl max-w-[190px] animate-float2">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-[10px] text-white">📊</div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Mastery</span>
+            <div className="glass-card rounded-2xl p-4 shadow-xl w-full badge-enter animate-float2" style={{ animationDelay: "1.2s", opacity: 0 }}>
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2 text-left">Quiz Generated</p>
+              <p className="text-2xl font-black text-slate-900 text-left">10 Qs</p>
+              <p className="text-xs text-emerald-500 font-bold mt-1 text-left">&uarr; from Biology.pdf</p>
             </div>
-            <div className="w-full bg-slate-100 rounded-full h-2 mb-1.5">
-              <div className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style={{ width: "78%" }}></div>
+          </div>
+
+          {/* Center: Hero Content */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 bg-white border border-blue-200 rounded-full px-4 py-2 mb-8 backdrop-blur-sm shadow-md shadow-blue-500/10">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">AI-Powered Study Platform</span>
             </div>
-            <p className="text-right text-xs font-black text-blue-500">78%</p>
-          </div>
-        </div>
+            
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-[86px] font-black leading-[0.95] tracking-tight mb-8 text-slate-900">
+              <span className="gradient-text">Study smarter.</span>
+              <br />
+              <span>Score higher.</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-slate-500 font-medium max-w-xl mx-auto mb-12 leading-relaxed">
+              Upload your study materials, and let AI generate personalized quizzes, detect your weak spots, and tutor you 24/7.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/signup" className="cta-btn text-white text-lg font-black px-10 py-4 rounded-full transition-all flex items-center gap-2">
+                Start for Free
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </Link>
+              <Link href="/login" className="text-slate-600 hover:text-slate-900 text-base font-bold transition-colors flex items-center gap-2 px-6 py-4">
+                Already have an account? Log in &rarr;
+              </Link>
+            </div>
 
-        <div className="hidden xl:block absolute bottom-[28%] left-[2%] badge-enter" style={{ animationDelay: "1.2s", opacity: 0 }}>
-          <div className="glass-card rounded-2xl p-4 shadow-2xl max-w-[180px] animate-float2">
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Quiz Generated</p>
-            <p className="text-2xl font-black text-slate-900">10 Qs</p>
-            <p className="text-xs text-emerald-500 font-bold mt-1">&uarr; from Biology.pdf</p>
-          </div>
-        </div>
-
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-3xl mx-auto px-4">
-          <div className="inline-flex items-center gap-2 bg-white border border-blue-200 rounded-full px-4 py-2 mb-8 backdrop-blur-sm shadow-md shadow-blue-500/10">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">AI-Powered Study Platform</span>
-          </div>
-          
-          <h1 className="text-6xl md:text-7xl lg:text-[96px] font-black leading-[0.95] tracking-tight mb-8 text-slate-900">
-            <span className="gradient-text">Study smarter.</span>
-            <br />
-            <span>Score higher.</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-slate-500 font-medium max-w-2xl mx-auto mb-12 leading-relaxed">
-            Upload your study materials, and let AI generate personalized quizzes, detect your weak spots, and tutor you 24/7.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/signup" className="cta-btn text-white text-lg font-black px-10 py-4 rounded-full transition-all flex items-center gap-2">
-              Start for Free
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </Link>
-            <Link href="/login" className="text-slate-600 hover:text-slate-900 text-base font-bold transition-colors flex items-center gap-2 px-6 py-4">
-              Already have an account? Log in →
-            </Link>
+            <p className="text-slate-400 text-sm font-medium mt-6">No credit card required &middot; Free forever</p>
           </div>
 
-          <p className="text-slate-400 text-sm font-medium mt-6">No credit card required · Free forever</p>
+          {/* Right badge column */}
+          <div className="hidden lg:flex flex-col gap-5 items-end">
+            <div className="glass-card rounded-2xl p-4 shadow-xl w-full badge-enter animate-float2" style={{ animationDelay: "0.9s", opacity: 0 }}>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-[10px] text-white">📊</div>
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Mastery</span>
+              </div>
+              <div className="w-full bg-slate-100 rounded-full h-2 mb-1.5">
+                <div className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-400" style={{ width: "78%" }}></div>
+              </div>
+              <p className="text-right text-xs font-black text-blue-500">78%</p>
+            </div>
+          </div>
+
         </div>
 
         {/* Scroll indicator */}
