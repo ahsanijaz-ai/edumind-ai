@@ -133,7 +133,7 @@ export default function Dashboard() {
         <nav className="flex-1 py-4 px-3 space-y-1">
           <p className="text-slate-400 text-[10px] font-black uppercase tracking-widest px-3 mb-3">Navigation</p>
           <Link href="/dashboard" className="nav-item active flex items-center px-3 py-3 rounded-xl font-bold text-sm">
-            <BookOpen className="w-4 h-4 mr-3 text-amber-400" />Subjects
+            <BookOpen className="w-4 h-4 mr-3 text-blue-500" />Subjects
           </Link>
           <Link href="/dashboard/evaluations" className="nav-item flex items-center px-3 py-3 rounded-xl font-bold text-sm">
             <Target className="w-4 h-4 mr-3" />Evaluations
@@ -182,7 +182,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-3 gap-4 mb-8">
             {[
               { label: "Total Subjects", value: subjects.length, icon: <BookOpen className="w-5 h-5" />, color: "text-blue-600" },
-              { label: "AI Sessions", value: "∞", icon: <Zap className="w-5 h-5" />, color: "text-amber-500" },
+              { label: "AI Sessions", value: "∞", icon: <Zap className="w-5 h-5" />, color: "text-blue-500" },
               { label: "Progress", value: "Active", icon: <TrendingUp className="w-5 h-5" />, color: "text-emerald-500" },
             ].map((stat, i) => (
               <div key={i} className="p-5 rounded-2xl" style={{ background: "white", border: "1px solid #e2e8f0", boxShadow: "0 1px 2px rgba(0,0,0,0.05)" }}>

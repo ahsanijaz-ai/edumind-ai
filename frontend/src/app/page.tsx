@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, useRef, ReactNode } from "react";
-import { Brain, Sparkles, BookOpen, Target, ArrowRight, CheckCircle2, Zap, ArrowUpRight, Github, Twitter, Linkedin, Star, Users, BrainCircuit } from "lucide-react";
+import { Sparkles, BookOpen, Target, ArrowRight, CheckCircle2, Zap, ArrowUpRight, Github, Twitter, Linkedin, Star, Users, BrainCircuit } from "lucide-react";
 
 function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -118,7 +118,7 @@ export default function Home() {
       {/* Cursor glow follower */}
       <div
         className="fixed w-[600px] h-[600px] rounded-full pointer-events-none z-0 transition-all duration-700"
-        style={{ left: mousePos.x - 300, top: mousePos.y - 300, background: "radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%)" }}
+        style={{ left: mousePos.x - 300, top: mousePos.y - 300, background: "radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%)" }}
       />
 
       {/* ── NAVBAR ── */}
@@ -223,7 +223,7 @@ export default function Home() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section id="how" className="relative py-32 px-6 overflow-hidden">
+      <section id="how-it-works" className="relative py-32 px-6 overflow-hidden">
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%)" }}></div>
         <div className="max-w-5xl mx-auto relative z-10">
           <Reveal>
@@ -276,7 +276,7 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <section id="testimonials" className="relative py-32 px-6">
+      <section id="reviews" className="relative py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <div className="text-center mb-20">
