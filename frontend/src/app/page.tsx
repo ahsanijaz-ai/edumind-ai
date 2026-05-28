@@ -153,18 +153,18 @@ export default function Home() {
         <div className="absolute top-[20%] left-[5%] w-72 h-72 rounded-full blur-[100px]" style={{ background: "rgba(59,130,246,0.1)" }}></div>
         <div className="absolute bottom-[20%] right-[5%] w-72 h-72 rounded-full blur-[100px]" style={{ background: "rgba(37,99,235,0.1)" }}></div>
 
-        {/* Floating UI badges */}
-        <div className="hidden lg:block absolute top-[28%] left-[6%] badge-enter" style={{ animationDelay: "0.6s", opacity: 0 }}>
-          <div className="glass-card rounded-2xl p-4 shadow-2xl max-w-[200px] animate-float">
+        {/* Floating UI badges - only show on xl+ screens to avoid overlap */}
+        <div className="hidden xl:block absolute top-[28%] left-[2%] badge-enter" style={{ animationDelay: "0.6s", opacity: 0 }}>
+          <div className="glass-card rounded-2xl p-4 shadow-2xl max-w-[190px] animate-float">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 bg-green-400 rounded-full dot-1"></div>
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">AI Tutor</span>
             </div>
-            <p className="text-xs text-slate-700 font-medium leading-relaxed">"Mitosis produces two genetically identical daughter cells via 4 phases..."</p>
+            <p className="text-xs text-slate-700 font-medium leading-relaxed">&ldquo;Mitosis produces two genetically identical daughter cells via 4 phases...&rdquo;</p>
           </div>
         </div>
 
-        <div className="hidden lg:block absolute top-[30%] right-[5%] badge-enter" style={{ animationDelay: "0.9s", opacity: 0 }}>
+        <div className="hidden xl:block absolute top-[30%] right-[2%] badge-enter" style={{ animationDelay: "0.9s", opacity: 0 }}>
           <div className="glass-card rounded-2xl p-4 shadow-2xl max-w-[190px] animate-float2">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-[10px] text-white">📊</div>
@@ -177,16 +177,16 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hidden lg:block absolute bottom-[28%] left-[8%] badge-enter" style={{ animationDelay: "1.2s", opacity: 0 }}>
+        <div className="hidden xl:block absolute bottom-[28%] left-[2%] badge-enter" style={{ animationDelay: "1.2s", opacity: 0 }}>
           <div className="glass-card rounded-2xl p-4 shadow-2xl max-w-[180px] animate-float2">
             <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Quiz Generated</p>
             <p className="text-2xl font-black text-slate-900">10 Qs</p>
-            <p className="text-xs text-emerald-500 font-bold mt-1">↑ from Biology.pdf</p>
+            <p className="text-xs text-emerald-500 font-bold mt-1">&uarr; from Biology.pdf</p>
           </div>
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 max-w-3xl mx-auto px-4">
           <div className="inline-flex items-center gap-2 bg-white border border-blue-200 rounded-full px-4 py-2 mb-8 backdrop-blur-sm shadow-md shadow-blue-500/10">
             <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
             <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">AI-Powered Study Platform</span>
