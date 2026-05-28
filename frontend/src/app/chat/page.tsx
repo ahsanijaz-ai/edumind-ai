@@ -84,7 +84,27 @@ export default function ChatPage() {
   const handleLogout = async () => { await supabase.auth.signOut(); router.push("/"); };
   const currentSubject = subjects.find(s => s.id === subjectId);
 
-  const renderMessage = (content: string) => content.replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1');
+  const clearChat = async () => {
+    if (!userId) return;
+    try {
+      await fetch(`http://127.0.0.1:8000/api/v1/chat/${userId}/clear?subject_id=${subjectId || ''}`, { method: "DELETE" });
+    } catch {}
+    const currentSubject = subjects.find(s => s.id === subjectId);
+    const greeting = subjectId && currentSubject
+      ? `Hello! I'm ready to help you master **${currentSubject.name}**. Ask me anything about your uploaded materials!`
+      : "Hello! I'm EduMind AI, your personal study assistant. What would you like to learn today?";
+    setMessages([{ id: Date.now().toString(), role: "ai", content: greeting }]);
+  };
+
+  const renderMessage = (content: string) => {
+    // Convert markdown to styled spans
+    return content
+      .replace(/```(.*?)```/gs, '<code class="block bg-slate-100 rounded-lg p-3 my-2 text-sm font-mono text-slate-800">$1</code>')
+      .replace(/`(.*?)`/g, '<code class="bg-slate-100 rounded px-1.5 py-0.5 text-sm font-mono text-blue-600">$1</code>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-black text-slate-900">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br />');
+  };
 
   return (
     <div className="flex fixed inset-0 bg-slate-50 text-slate-900 overflow-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -171,15 +191,24 @@ export default function ChatPage() {
             <div>
               <h1 className="text-base font-black text-slate-900">{currentSubject ? currentSubject.name : "General Assistant"}</h1>
               <div className="flex items-center gap-1.5 text-[11px] font-bold text-blue-500 uppercase tracking-widest mt-0.5">
-                <Sparkles className="w-3 h-3" /> Powered by EduMind AI
+                <Sparkles className="w-3 h-3" /> Powered by Gemini AI
               </div>
             </div>
           </div>
-          {currentSubject && (
-            <Link href={`/dashboard/subjects/${currentSubject.id}`} className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-slate-600 hover:text-slate-900 transition-all bg-white shadow-sm hover:shadow-md" style={{ border: "1px solid #e2e8f0" }}>
-              <BookOpen className="w-4 h-4" /> View Materials
-            </Link>
-          )}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={clearChat}
+              className="hidden md:flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-all"
+              title="Clear conversation history"
+            >
+              Clear chat
+            </button>
+            {currentSubject && (
+              <Link href={`/dashboard/subjects/${currentSubject.id}`} className="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-slate-600 hover:text-slate-900 transition-all bg-white shadow-sm hover:shadow-md" style={{ border: "1px solid #e2e8f0" }}>
+                <BookOpen className="w-4 h-4" /> View Materials
+              </Link>
+            )}
+          </div>
         </header>
 
         {/* Messages */}
@@ -200,7 +229,11 @@ export default function ChatPage() {
                     ? { background: "white", border: "1px solid #e2e8f0" }
                     : { background: "white", border: "1px solid #e2e8f0" }
                 }>
-                  <p className="whitespace-pre-wrap">{renderMessage(m.content)}</p>
+                  {m.role === "ai" ? (
+                    <div className="whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: renderMessage(m.content) }} />
+                  ) : (
+                    <p className="whitespace-pre-wrap">{m.content}</p>
+                  )}
                 </div>
                 {m.role === "user" && (
                   <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 bg-slate-100 border border-slate-200">
